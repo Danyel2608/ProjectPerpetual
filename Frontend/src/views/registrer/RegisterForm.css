@@ -1,0 +1,57 @@
+div.register{
+  width: 100vw;
+  padding: 5%;
+  max-width: 600px;
+}
+div.form-register {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+}
+.header-form-register h1 {
+  padding: 0.5em;
+}
+.body-form-register {
+  width: 100%;
+  padding: 0 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.body-form-register input {
+  width: 100%;
+  height: auto;
+  font-size: 1.5em;
+  border-radius: 0.5rem;
+  border: 1px solid white;
+  margin: 5%;
+  background-color: transparent;
+  color: white;
+}
+
+.submit-register {
+  padding: 1.5em;
+}
+.submit-register button {
+  padding: 1em;
+  border: 1px solid white;
+  border-radius: 1rem;
+  font-size: 1.3em;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  background-color: transparent;
+}
+.goToLogin {
+  font-size: 1.4em;
+}
+.goToLogin a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}

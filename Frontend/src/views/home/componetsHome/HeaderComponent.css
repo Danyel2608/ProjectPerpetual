@@ -1,0 +1,79 @@
+.allHeader {
+  width: 100vw;
+  height: auto;
+  overflow: hidden;
+}
+.header,
+.titleHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.titleHeader {
+  margin: 5% 20%;
+  padding: 1em 1em;
+  border: 1px solid rgb(177, 170, 170);
+  border-radius: 2rem;
+  background-color: transparent;
+  height: 50%;
+}
+.header img {
+  width: 12%;
+  color: white;
+  padding: 0.5em;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.header h1 {
+  font-size: 1.5em;
+  color: white;
+  text-align: end;
+}
+div.buttonsHeeader {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+div.buttonsHeeader button {
+  margin: 5%;
+  margin-top: 2em;
+  padding: 0.5em 2em 0.5em 2em;
+  text-transform: uppercase;
+  border-radius: 2rem;
+  border: 1px solid white;
+  background-color: transparent;
+  box-shadow: 0em 0 0.5em white;
+  cursor: pointer;
+}
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+/* BREAKPOINTS */
+@media screen and (min-width: 480px) {
+  .header h1 {
+    font-size: 2.5em;
+  }
+  .buttonsHeeader button {
+    font-size: 1.5em;
+  }
+}
+@media (min-width: 1025px) {
+  .allHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2em;
+  }
+  .buttonsHeeader button{
+    transform: scale(1, 1);
+    transition: all 5s linear;
+  }
+  .buttonsHeeader button:hover {
+    transform: scale(1.5, 1.5);
+    transition: all 5s linear;
+  }
+}

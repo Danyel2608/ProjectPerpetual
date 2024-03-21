@@ -1,0 +1,97 @@
+div.tableCalendar {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  color: white;
+  padding: 5%;
+}
+h1.citas {
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  color: white;
+}
+.navButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.navButtons button {
+  padding: 0.5em;
+  border-radius: 1.5rem;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+.navButtons button,
+.navButtons h3 {
+  font-size: 1.2em;
+}
+table.calendar {
+  border-collapse: collapse;
+  display: inline-block;
+  padding-top: 5%;
+}
+tr {
+  display: inline-flex;
+}
+.calendar thead tr th {
+  border: 1px solid gray;
+  color: white;
+  background-color: transparent;
+  font-size: 1.23em;
+}
+.calendar td {
+  border: 1px solid white;
+  text-align: start;
+  padding: .5em;
+  font-size: 1.2em;
+}
+.calendar td.today {
+  background-color: #0d0130;
+}
+.reserved{
+  background-color: red;
+  color: black;
+}
+@media screen and (min-width: 480px) {
+  div.calendar {
+    padding: 1.5em;
+    font-size: 1.35em;
+  }
+}
+@media screen and (min-width: 600px) {
+  .calendar {
+    font-size: 1.35em;
+  }
+  .allCalendar h1 {
+    font-size: 2em;
+  }
+}
+@media screen and (min-width: 801px) {
+  .calendar {
+    font-size: 1.8em;
+  }
+  .navButtons {
+    font-size: larger;
+  }
+}
+@media (min-width: 1025px) {
+  .calendar {
+    font-size: 2.5em;
+  }
+  .allCalendar h1 {
+    font-size: 2.5em;
+  }
+}
+@media (min-width: 1281px) {
+  .calendar {
+    font-size: 3em;
+  }
+  .allCalendar {
+    padding: 0 10%;
+  }
+  .allCalendar h1 {
+    font-size: 4em;
+  }
+}

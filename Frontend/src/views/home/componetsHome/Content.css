@@ -1,0 +1,44 @@
+.slider-container {
+  width: 100vw;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.slider {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  animation: slider 10s infinite linear alternate;
+  transition: transform 0.5s ease;
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: flex;
+}
+@keyframes slider {
+  0% {
+    margin-left: 100%;
+  }
+  25% {
+    margin-left: 100%;
+  }
+
+  50% {
+    margin-left: 0;
+  }
+  75% {
+    margin-left: 0;
+  }
+
+  75% {
+    margin-left: -100%;
+  }
+  100% {
+    margin-left: -100%;
+  }
+}

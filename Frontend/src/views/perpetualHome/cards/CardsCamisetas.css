@@ -1,0 +1,103 @@
+div.camisetas {
+  width: 100%;
+  height: auto;
+  padding: 2em;
+}
+.card {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  margin-top: 10%;
+  width: 100%;
+}
+
+.camiseta1 img {
+  width: 100%;
+  padding: 5%;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+.cardContent h3 {
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+}
+.cardBody {
+  display: flex;
+  justify-content: space-around;
+  padding: 5%;
+  color: white;
+}
+.cardBody p {
+  font-size: 1em;
+}
+p.price {
+  text-align: end;
+}
+.card .shop {
+  padding-bottom: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card .shop button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  width: 90%;
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+.alert-already-add {
+  position: fixed;
+  top: 10%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  text-align: center; 
+  background-color: burlywood;
+  width: 70%;
+  padding: 20px; 
+  border-radius: 2rem;
+}
+.title-alert h1,.info-alert h3{
+  text-transform: uppercase;
+  font-size: 1em;
+}
+.title-alert i {
+  font-size: 1em;
+}
+.alert-already-invisible{
+  opacity: 0;
+  transition: all 1s linear;
+}
+.alert-already-visible{
+  opacity: 1;
+  transition: all 1s linear;
+}
+
+@media (min-width: 600px) {
+  .card .shop button,.cardBody {
+    font-size: 2em;
+  }
+  .cardContent h3{
+    font-size: 3.5em;
+  }
+  .title-alert h1{
+    font-size: 2em;
+  }
+  .info-alert h3,.title-alert i{
+  font-size: 1.5em;
+  }
+}
+@media (min-width: 1025px) {
+  div.camisetas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card{
+    margin: 0 1%;
+  }
+}

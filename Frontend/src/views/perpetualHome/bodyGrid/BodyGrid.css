@@ -1,0 +1,92 @@
+.body .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  padding: 5%;
+}
+
+.grid img {
+  width: 100%;
+  object-fit:cover;
+  border-radius: 1rem;
+}
+.gift{
+  padding: 5%;
+}
+.gift img {
+  width: 100%;
+}
+.gift h3,
+.help h2 {
+  text-align: center;
+  padding-bottom: 5%;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  padding: 10%;
+  color: white;
+}
+.help{
+  margin: 5% 0;
+}
+.help h2 {
+  padding-top: 5%;
+}
+form{
+  padding: 5%;
+}
+form input {
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 2rem;
+  width: 100%;
+}
+
+input.textDescription {
+  padding-bottom: 10em;
+}
+
+form .buttonForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  width: 100%;
+}
+form .buttonForm button {
+  padding: 1em;
+  border-radius: 1.5rem;
+  background-color: transparent;
+  border: 1px solid white;
+  font-size: 1.2em;
+  color: white;
+  text-align: center;
+}
+
+@media (min-width: 601px) {
+  .gift h3,.help h2 {
+    font-size: 2.5em;
+  }
+}
+@media (min-width: 801px) {
+  .help{
+    padding: 0 5%;
+  }
+  .help input,form .buttonForm button{
+    font-size: 2em;
+  }
+}
+@media (min-width: 1025px) {
+  .gift h3,.help h2 {
+    font-size: 3.5em;
+  }
+  .help input,form .buttonForm button{
+    font-size: 1.5em;
+  }
+  .gift,.grid{
+    padding: 0 10%;
+  }
+  .body .grid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

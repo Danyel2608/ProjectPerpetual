@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(
+    to bottom right,
+    #204b5e,
+    #426b65,
+    #3b1c3b,
+    #46638f,
+    #fdfac7
+  );
+
+  /* background: linear-gradient(to bottom right,#e1d0fc, #f7d5e1, #ae8fd1); */
+  background-size: 500% 5000%;
+  animation: gradientAnimation 15s linear infinite;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

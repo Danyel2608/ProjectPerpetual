@@ -1,0 +1,78 @@
+.allComents {
+  width: 100vw;
+  height: auto;
+  padding: 5%;
+}
+.bodyComments{
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 2rem;
+  padding: 5%;
+}
+.headerComment{
+  color: white;
+  width: 100%;
+}
+.headerComment h1{
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3em;
+  padding: 1em 0;
+}
+.iconsHeader{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.iconsHeader a{
+  margin: 1em;
+  color: white;
+  font-size: 1.5em;
+}
+i.fa-user{
+  text-align: end;
+}
+.formComment{
+  padding: 1em 0;
+}
+.formComment input{
+  background-color: white;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: .5rem;
+}
+.formComment i{
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+.commentsUsers ul li{
+  display: flex;
+  background-color: white;
+  align-items: center;
+  border-radius: .5rem;
+  margin: 2em 0;
+}
+.commentsUsers ul li img{
+  width: 20%;
+  margin: 0 1em;
+}
+.commentsUsers ul li .user h4{
+  font-size: 1.5em;
+}
+.commentsUsers ul li .user p{
+  font-size: 1em;
+}
+
+@media (min-width:801px) {
+  .commentsUsers ul li .user h4{
+    font-size: 2.5em;
+  }
+  .commentsUsers ul li .user p{
+    font-size: 1.5em;
+  }
+  .iconsHeader a{
+    font-size: 2em;
+  }
+}
+
