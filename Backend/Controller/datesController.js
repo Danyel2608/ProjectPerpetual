@@ -1,19 +1,18 @@
-const express = require('express');
-const router = express.Router();
 const Dates = require("../Model/datesModel");
 
-// Endpoint para obtener todas las citas reservadas
-const getDates = async (req, res) => {
+// Obtener todas las citas reservadas
+const getReservedDates = async (req, res) => {
     try {
-        const citasReservadas = await Dates.find({ estado: 'reservado' });
-        res.json(citasReservadas);
+        const citasReservadas = await Dates.find({ estado: 'reservado' }).select('fecha');
+        const fechasReservadas = citasReservadas.map(cita => cita.fecha);
+        res.json(fechasReservadas);
     } catch (error) {
-        res.status(500).json({ error: 'Error al obtener las citas disponibles' });
+        res.status(500).json({ error: 'Error al obtener las citas reservadas' });
     }
 };
 
-// Endpoint para reservar una cita
-const postDates = async (req, res) => {
+// Reservar una cita
+const reserveDate = async (req, res) => {
     try {
         const { fecha } = req.body;
         const date = await Dates.findOne({ fecha });
@@ -21,17 +20,18 @@ const postDates = async (req, res) => {
             const newDate = new Dates({
                 fecha,
                 estado: "reservado",
-            })
+            });
             await newDate.save();
             res.status(201).json({
                 status: "Succeeded",
                 mensaje: 'Cita reservada exitosamente'
             });
+        } else {
+            res.status(409).json({ error: 'La cita ya está reservada' });
         }
-        return res.status(404).json({ error: 'Cita no disponible' });
     } catch (error) {
         res.status(500).json({ error: "Error al reservar cita" });
     }
 };
 
-module.exports = { getDates, postDates };
+module.exports = { getReservedDates, reserveDate };

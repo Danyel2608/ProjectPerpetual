@@ -2,19 +2,28 @@ import './CardsCamisetas.css';
 import camiseta1 from "../../../assets/camiseta1.jpeg";
 
 function CardsCamisetas() {
-    const updateTotal=()=>{
-        let totalCount=document.getElementById("total-count");
+    const updateTotal = () => {
+        let totalCount = document.getElementById("total-count");
         let listItems = document.getElementById("listItems");
-        let cartPrices=listItems.querySelectorAll(".price-item");
-        let cartQuantities=listItems.querySelectorAll(".quantity-value");
-        let total=0;
+        let cartPrices = listItems.querySelectorAll(".price-item");
+        let cartQuantities = listItems.querySelectorAll(".quantity-value");
+        let total = 0;
         for (let i = 0; i < cartPrices.length; i++) {
             let price = cartPrices[i].textContent;
             let quantity = cartQuantities[i].textContent;
             total = total + price * quantity;
             console.log(quantity);
-          }
-        totalCount.innerText = total+"€";
+        }
+        totalCount.innerText = total + "€";
+    }
+    const addItems = () => {
+        let modalAlreadyAdd = document.getElementById("alert-addItem");
+        modalAlreadyAdd.classList.remove("alert-already-invisible");
+        modalAlreadyAdd.classList.add("alert-already-visible");
+        setTimeout(() => {
+            modalAlreadyAdd.classList.remove("alert-already-visible");
+            modalAlreadyAdd.classList.add("alert-already-invisible");
+        }, 4000);
     }
     const alertAlreadyAdd = () => {
         let modalAlreadyAdd = document.getElementById("alert-already-add");
@@ -35,6 +44,9 @@ function CardsCamisetas() {
         for (let index = 0; index < cartItems.length; index++) {
             if (cartItems[index].getAttribute("id") === rowId) {
                 alertAlreadyAdd();
+                return;
+            } else {
+                addItems();
                 return;
             }
         }
@@ -83,11 +95,17 @@ function CardsCamisetas() {
         <div className="camisetas" id="camisetas">
             <div className="alert-already-add alert-already-invisible" id="alert-already-add">
                 <div className="title-alert">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <i className="fa-solid fa-triangle-exclamation"></i>
                     <h1>Already Add</h1>
                 </div>
                 <div className="info-alert">
                     <h3>You may go to Shopping Cart to add more products</h3>
+                </div>
+            </div>
+            <div className="alert-addItem-add alert-already-invisible" id="alert-addItem">
+                <div className="title-alert">
+                    <i class="fa-regular fa-face-smile-beam"></i>
+                    <h1>Add Product</h1>
                 </div>
             </div>
             <div className="card">

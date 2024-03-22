@@ -28,14 +28,14 @@
   display: flex;
   align-items: center;
   border: 1px solid black;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin: 15% 0;
 }
-.items-container ul li h5 ,
-.items-container ul li p{
+.items-container ul li h5,
+.items-container ul li p {
   font-size: 1.5em;
 }
-.items-container ul li p{
+.items-container ul li p {
   border: 1px solid black;
   width: 95%;
 }
@@ -43,12 +43,12 @@
   width: 50%;
   text-align: start;
   margin: 1em 0;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
-.items-container ul li i{
+.items-container ul li i {
   cursor: pointer;
 }
-.total-count{
+.total-count {
   text-align: end;
   font-size: 2em;
   position: absolute;
@@ -72,7 +72,7 @@
 }
 .buttons-activities {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   width: 70%;
   bottom: 50%;
@@ -94,58 +94,66 @@
 .invisible {
   display: none;
 }
-@media (min-width:480px) {
-  .modal{
+@media (min-width: 480px) {
+  .modal {
     height: 70vh;
   }
-  .total-count{
+  .total-count {
     bottom: 40%;
   }
-  .buttons-activities{
+  .buttons-activities {
     bottom: 30%;
   }
 }
-@media (min-width:601px){
-  .total-count{
+@media (min-width: 600px) {
+  .total-count {
     bottom: 35%;
   }
-  .buttons-activities{
+  .buttons-activities {
     bottom: 25%;
+  }
+  .buttons-activities button{
+    font-size: 1.4em;
+    margin: 0 5%;
   }
 }
-@media (min-width:801px){
-  .modal{
+@media (min-width: 801px) {
+  .modal {
     height: 85vh;
   }
-  .total-count{
+  .total-count {
     bottom: 25%;
   }
-  .buttons-activities{
+  .buttons-activities {
     bottom: 10%;
   }
 }
-@media (min-width:991px){
-  .items-container ul li{
+@media (min-width: 991px) {
+  .items-container ul li {
     margin: 5% 0;
   }
 }
-@media (min-width:1281px){
-  .modal{
+@media (min-width: 1281px) {
+  .modal {
     height: 95vh;
-    margin:1% 10%;
+    margin: 1% 10%;
     padding: 1% 5%;
   }
-  .total-count{
+  .total-count {
     bottom: 15%;
   }
-  .buttons-activities{
+  .buttons-activities {
     bottom: 5%;
   }
   .buttons-activities button,
   .total-count p,
-  .items-container ul li{
+  .items-container ul li {
     font-size: 1.4em;
-  }.items-container ul li{
+  }
+  .items-container ul li {
     margin: 1% 0;
+  }
+  .modal-close button {
+    padding: 1em 0;
   }
 }

@@ -50,45 +50,54 @@ p.price {
   border-radius: 1.5rem;
   cursor: pointer;
 }
-.alert-already-add {
+.alert-already-add,
+.alert-addItem-add {
   position: fixed;
-  top: 10%; 
-  left: 50%; 
+  top: 10%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center; 
-  background-color: burlywood;
-  width: 70%;
-  padding: 20px; 
+  text-align: center;
+  width: 50%;
+  padding: 20px;
   border-radius: 2rem;
 }
-.title-alert h1,.info-alert h3{
+.alert-already-add{
+  background-color: burlywood;
+}
+.alert-addItem-add {
+  background-color: darkseagreen;
+}
+.title-alert h1,
+.info-alert h3 {
   text-transform: uppercase;
   font-size: 1em;
 }
 .title-alert i {
   font-size: 1em;
 }
-.alert-already-invisible{
+.alert-already-invisible {
   opacity: 0;
   transition: all 1s linear;
 }
-.alert-already-visible{
+.alert-already-visible {
   opacity: 1;
   transition: all 1s linear;
 }
 
 @media (min-width: 600px) {
-  .card .shop button,.cardBody {
+  .card .shop button,
+  .cardBody {
     font-size: 2em;
   }
-  .cardContent h3{
+  .cardContent h3 {
     font-size: 3.5em;
   }
-  .title-alert h1{
+  .title-alert h1 {
     font-size: 2em;
   }
-  .info-alert h3,.title-alert i{
-  font-size: 1.5em;
+  .info-alert h3,
+  .title-alert i {
+    font-size: 1.5em;
   }
 }
 @media (min-width: 1025px) {
@@ -97,7 +106,7 @@ p.price {
     justify-content: center;
     align-items: center;
   }
-  .card{
+  .card {
     margin: 0 1%;
   }
 }

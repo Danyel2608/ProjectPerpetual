@@ -12,8 +12,6 @@ body {
     #46638f,
     #fdfac7
   );
-
-  /* background: linear-gradient(to bottom right,#e1d0fc, #f7d5e1, #ae8fd1); */
   background-size: 500% 5000%;
   animation: gradientAnimation 15s linear infinite;
   width: 100vw;

@@ -7,7 +7,7 @@ import logo from "../../assets/logo.png";
 import ModalShop from "./modalShop/ModalShop";
 
 function PerpetualPage() {
-  const [toogle, setToogle] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const OpenModal = () => {
     let modal = document.getElementById("modalShop");
     modal.classList.remove("invisible");
@@ -15,12 +15,12 @@ function PerpetualPage() {
   }
   return (
     <div className="inicio">
-      {toogle && (<>
+      {showMenu && (<>
         <MenuHome></MenuHome>
       </>)}
       <div className="title">
         <div className="img">
-          <img src={logo} alt="logoHome" tooltip-dir="top" onClick={() => setToogle(!toogle)}></img>
+          <img src={logo} alt="logoHome" onClick={() => setShowMenu(!showMenu)}/>
         </div>
         <h1>HOME</h1>
         <i className="fa-solid fa-shop" onClick={OpenModal}>

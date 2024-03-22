@@ -1,31 +1,47 @@
-div.tableCalendar {
+.calendar-container {
   width: 100%;
   height: auto;
   text-align: center;
   color: white;
   padding: 5%;
+  margin: 1% 0;
 }
-h1.citas {
-  text-align: center;
-  font-size: 1.5em;
-  text-transform: uppercase;
-  color: white;
-}
-.navButtons {
+.nav-buttons {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.navButtons button {
+.nav-buttons button {
   padding: 0.5em;
   border-radius: 1.5rem;
   background-color: transparent;
   border: 1px solid white;
   color: white;
+  cursor: pointer;
 }
-.navButtons button,
-.navButtons h3 {
+.nav-buttons button,
+.nav-buttons h3 {
   font-size: 1.2em;
+  text-align: center;
+  color: white;
+}
+.info{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5em;
+  font-size: 1em;
+  color: white;
+  text-align: center;
+  border: 1px solid white;
+}
+.info p.reserved-info{
+  width: 50%;
+  background-color: rgb(84, 51, 146);
+}
+.info p.today-info{
+  width: 50%;
+  padding-right: 1em;
+  background-color: #0d0130;
 }
 table.calendar {
   border-collapse: collapse;
@@ -41,7 +57,8 @@ tr {
   background-color: transparent;
   font-size: 1.23em;
 }
-.calendar td {
+.calendar td{
+  color: white;
   border: 1px solid white;
   text-align: start;
   padding: .5em;
@@ -50,9 +67,12 @@ tr {
 .calendar td.today {
   background-color: #0d0130;
 }
-.reserved{
-  background-color: red;
-  color: black;
+td.reserved{
+  background-color: rgb(84, 51, 146);
+  color: white;
+}
+.empty{
+  background-color: transparent;
 }
 @media screen and (min-width: 480px) {
   div.calendar {
@@ -64,7 +84,7 @@ tr {
   .calendar {
     font-size: 1.35em;
   }
-  .allCalendar h1 {
+  .nav-buttons h3 {
     font-size: 2em;
   }
 }
@@ -80,8 +100,11 @@ tr {
   .calendar {
     font-size: 2.5em;
   }
-  .allCalendar h1 {
-    font-size: 2.5em;
+  .nav-buttons {
+    font-size: 1.5em;
+  }
+  .info p{
+    font-size: 1.5em;
   }
 }
 @media (min-width: 1281px) {
@@ -91,7 +114,7 @@ tr {
   .allCalendar {
     padding: 0 10%;
   }
-  .allCalendar h1 {
+  .nav-buttons h3 {
     font-size: 4em;
   }
 }

@@ -9,9 +9,9 @@ div.title {
   padding: 5%;
   text-align: center;
 }
-.title .img img{
+.title img{
   width: auto;
-  height: 100px;
+  height: 50px;
   object-fit: cover;
   cursor: pointer;
 }
@@ -46,6 +46,9 @@ div.title {
 @media (min-width: 801px) {
   .title h1 {
     padding: 0 1em;
+  }
+  .title img{
+    height: 100px;
   }
 }
 @media (min-width: 1025px) {

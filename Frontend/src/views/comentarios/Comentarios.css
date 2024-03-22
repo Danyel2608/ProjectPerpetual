@@ -45,6 +45,7 @@ i.fa-user{
   text-align: center;
   color: white;
   font-size: 2em;
+  cursor: pointer;
 }
 .commentsUsers ul li{
   display: flex;
@@ -75,4 +76,5 @@ i.fa-user{
     font-size: 2em;
   }
 }
+
 

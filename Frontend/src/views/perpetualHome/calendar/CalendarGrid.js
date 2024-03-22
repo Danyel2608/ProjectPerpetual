@@ -1,39 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import './CalendarGrid.css';
 
-const Calendar = () => {
-  const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [calendarData, setCalendarData] = useState([]);
-  const [reservedDays, setReservedDays] = useState([]);
+const CalendarGrid = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [loading, setLoading] = useState(true);
+  const [reservedDates, setReservedDates] = useState([]);
 
   useEffect(() => {
-    fetchCalendarData();
-  }, [month, year]);
+    fetchReservedDates();
+  }, []);
 
-  const fetchCalendarData = async () => {
+  const fetchReservedDates = async () => {
     try {
-      const response = await fetch('http://localhost:8001/dates/availables', { method: "GET" });
-      const data = await response.json();
+      const response = await fetch('http://localhost:8001/dates/availables');
       if (response.ok) {
-        setCalendarData(data);
-        setReservedDays(data);
+        const data = await response.json();
+        setReservedDates(data);
+        setLoading(false);
+      } else {
+        console.error('Error fetching reserved dates:', response.status);
       }
     } catch (error) {
-      console.error('Error fetching calendar data:', error);
+      console.error('Error fetching reserved dates:', error);
     }
   };
 
-  //Control del dia en curso y creacion del calendario
-  const today = new Date().getDate();
-  const monthNow = new Date().getMonth();
-
-  const daysInMonth = (month, year) => {
-    return new Date(year, month, 0).getDate();
+  const handlePrevMonth = () => {
+    setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1));
   };
 
-  const startDayOfMonth = (month, year) => {
-    return new Date(year, month - 1, 1).getDay();
+  const handleNextMonth = () => {
+    setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1));
+  };
+
+  const daysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const startDayOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
   const monthNames = [
@@ -41,75 +46,77 @@ const Calendar = () => {
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
   ];
 
-  const handlePrevMonth = () => {
-    if (month === 1) {
-      setMonth(12);
-      setYear(year - 1);
-    } else {
-      setMonth(month - 1);
-    }
+  const isReserved = (day) => {
+    if (loading) return false;
+    const formattedCurrentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    return reservedDates.some(reservedDate => {
+      const formattedReservedDate = new Date(reservedDate);
+      return (
+        formattedReservedDate.getDate() === formattedCurrentDate.getDate() &&
+        formattedReservedDate.getMonth() === formattedCurrentDate.getMonth() &&
+        formattedReservedDate.getFullYear() === formattedCurrentDate.getFullYear()
+      );
+    });
   };
 
-  const handleNextMonth = () => {
-    if (month === 12) {
-      setMonth(1);
-      setYear(year + 1);
-    } else {
-      setMonth(month + 1);
-    }
-  };
-  const formatDate = (day, month, year) => {
-    const formattedDay = day < 10 ? '0' + day : day;
-    const formattedMonth = month < 10 ? '0' + month : month;
-    return `${formattedDay}/${formattedMonth}/${year}`;
+
+  const isToday = (date) => {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
   };
 
   return (
-    <div className='allCalendar'>
-      <h1 className='citas'>Citas Disponibles</h1>
-      <div className='tableCalendar'>
-        <div className='navButtons'>
-          <button onClick={handlePrevMonth}>Mes Anterior</button>
-          <h3>{monthNames[month - 1]} {year}</h3>
-          <button onClick={handleNextMonth}>Mes Siguiente</button>
-        </div>
-        <table className='calendar'>
-          <thead>
-            <tr>
-              <th>L</th>
-              <th>M</th>
-              <th>X</th>
-              <th>J</th>
-              <th>V</th>
-              <th>S</th>
-              <th>D</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...Array(6)].map((_, weekIndex) => (
-              <tr key={weekIndex}>
-                {[...Array(7)].map((_, dayIndex) => {
-                  const day = (weekIndex * 7) + dayIndex - startDayOfMonth(month, year);
-                  const isToday = day === today && month === monthNow + 1;
-                  const formattedDay = formatDate(day, month, year);
-                  const isReserved = reservedDays.includes(formattedDay);
-                  let tdClassName = '';
-                  if (isToday) tdClassName += 'today';
-                  if (isReserved) tdClassName += ' reserved';
-
-                  return (
-                    <td className={tdClassName.trim()} key={dayIndex}>
-                      {day > 0 && day <= daysInMonth(month, year) ? day : ''}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className='calendar-container'>
+      <div className='nav-buttons'>
+        <button onClick={handlePrevMonth}>Mes Anterior</button>
+        <h3>{monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}</h3>
+        <button onClick={handleNextMonth}>Mes Siguiente</button>
       </div>
+      <div className="info">
+        <p className="reserved-info">Días reservados</p>
+        <p className='today-info'>Hoy</p>
+      </div>
+      <table className='calendar'>
+        <thead>
+          <tr>
+            <th>L</th>
+            <th>M</th>
+            <th>X</th>
+            <th>J</th>
+            <th>V</th>
+            <th>S</th>
+            <th>D</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[...Array(6)].map((_, weekIndex) => {
+            const days = [...Array(7)].map((_, dayIndex) => {
+              const day = (weekIndex * 7) + dayIndex - startDayOfMonth(currentDate) + 1;
+              const currentDay = day > 0 && day <= daysInMonth(currentDate) ? day : null;
+              const formattedCurrentDate = currentDay ? new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDay) : null;
+              let tdClassName = '';
+              if (currentDay) {
+                if (isToday(formattedCurrentDate)) tdClassName += ' today';
+                if (isReserved(currentDay)) tdClassName += ' reserved';
+                if (!isReserved(currentDay)) tdClassName += ' empty';
+              }
+              return (
+                <td className={tdClassName.trim()} key={dayIndex}>
+                  {currentDay}
+                </td>
+              );
+            });
+            return <tr key={weekIndex}>{days}</tr>;
+          })}
+        </tbody>
+
+      </table>
     </div>
   );
 };
 
-export default Calendar;
+export default CalendarGrid;
