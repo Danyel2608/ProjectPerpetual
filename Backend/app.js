@@ -13,7 +13,10 @@ dotenv.config();
 const app = express();
 // Analiza las solicitudes que contienen archivos json
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // Algunos navegadores pueden requerir un código de estado 200 para aceptar la respuesta CORS
+}));
 
 //conectar con la base de datos
 mongoose.connect(process.env.MONGO_URI, {

@@ -1,5 +1,5 @@
 import "./ModalShop.css";
-import { useState } from "react";
+
 function ModalShop(props) {
 
   const CloseModal = () => {

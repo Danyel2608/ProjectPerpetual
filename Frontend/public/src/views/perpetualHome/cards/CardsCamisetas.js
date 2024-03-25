@@ -1,7 +1,9 @@
+import React, { useState } from 'react';
 import './CardsCamisetas.css';
 import camiseta1 from "../../../assets/camiseta1.jpeg";
 
 function CardsCamisetas() {
+    const [firstClick, setFirstClick] = useState(true);
     const updateTotal = () => {
         let totalCount = document.getElementById("total-count");
         let listItems = document.getElementById("listItems");
@@ -34,6 +36,7 @@ function CardsCamisetas() {
             modalAlreadyAdd.classList.add("alert-already-invisible");
         }, 4000);
     }
+    
     const AddItem = (e) => {
         let listItems = document.getElementById("listItems");
         let cartRow = document.createElement("li");
@@ -41,13 +44,18 @@ function CardsCamisetas() {
         let rowId = "row-number-" + productId;
         cartRow.setAttribute("id", rowId);
         let cartItems = document.querySelectorAll("li");
+        if (firstClick) {
+            addItems();
+            updateTotal();
+            setFirstClick(false);
+        }
         for (let index = 0; index < cartItems.length; index++) {
             if (cartItems[index].getAttribute("id") === rowId) {
                 alertAlreadyAdd();
                 return;
             } else {
                 addItems();
-                return;
+                updateTotal();
             }
         }
         let fotoCamiseta = e.target.parentNode.parentNode.firstChild.firstChild.src;
@@ -89,6 +97,7 @@ function CardsCamisetas() {
                 updateTotal();
             }
         });
+        updateTotal();
     };
 
     return (
