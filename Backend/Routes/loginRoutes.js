@@ -9,5 +9,9 @@ router.post("/signup", loginController.signup);
 router.post("/login", loginController.login);
 //endpoint para refrescar token
 router.get("/refresh", verifyToken, loginController.refreshToken);
+//Endpoint para restablecer contraseña
+router.put("/forget", loginController.forgetPassword)
+//Endpoint para eliminar un usuario
+router.delete("/deleteUser", loginController.deleteUser);
 
 module.exports = router;

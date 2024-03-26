@@ -1,9 +1,14 @@
-div.login{
-  width: 100vw;
-  padding: 5%;
-  max-width: 800px;
-}
-div.form {
+.forget-password {
+    width: 100vw;
+    max-width: 800px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0 auto;
+    margin-top: 5%;
+  }
+  
+div.form-forget {
   width: 100%;
   height: auto;
   background-color: transparent;
@@ -12,13 +17,13 @@ div.form {
   color: white;
   text-align: center;
 }
-.header-form h1 {
+.header-form-forget h1 {
   padding: 1em;
 }
-.body-form {
+.body-form-forget {
   width: 90%;
 }
-.body-form input {
+.body-form-forget input {
   width: 100%;
   height: auto;
   font-size: 1.5em;
@@ -28,35 +33,15 @@ div.form {
   background-color: transparent;
   color: white;
 }
-.remember {
-  align-items: center;
-  font-size: 1.5em;
-  margin: 0 5%;
-  text-align: start;
-}
-.remember input {
-  width: 5%;
-}
-.forget {
-  margin: 5%;
-  display: flex;
-  align-items: center;
-  font-size: 1.4em;
-}
-.forget a {
-  text-decoration: none;
+.link-login a{
+  text-align: center;
   color: white;
+  font-size: 1.5em;
 }
-.forget a:hover{
-  text-decoration: underline;
-}
-.forget a.createAccount {
-  margin: 0 10%;
-}
-.submit {
+.submit-forget {
   padding: 1.5em;
 }
-.submit button {
+.submit-forget button {
   padding: 1em;
   border: 1px solid white;
   border-radius: 1rem;
@@ -68,12 +53,8 @@ div.form {
 }
 
 @media (min-width: 1025px) {
-  .body-form input,
-  .forget a,
-  .remember label {
-    font-size: 1.7em;
-  }
   .body-form input {
+    font-size: 1.7em;
     width: 95%;
   }
 }

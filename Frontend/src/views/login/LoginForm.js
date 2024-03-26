@@ -32,7 +32,7 @@ function LoginForm(props) {
                         <label htmlFor="check1">Remeember me?</label>
                     </div>
                     <div className="forget">
-                        <a href="#">Forget password?</a>
+                        <a href="/forget">Forget password?</a>
                         <a href="/signup" className='createAccount'>Create an acount</a>
                     </div>
                     <div className="submit">

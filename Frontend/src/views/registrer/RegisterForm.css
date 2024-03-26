@@ -55,3 +55,6 @@ div.form-register {
   text-decoration: none;
   text-align: center;
 }
+.goToLogin a:hover{
+  text-decoration: underline;
+}

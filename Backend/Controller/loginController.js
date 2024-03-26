@@ -6,7 +6,7 @@ const { generateToken } = require("../lib/util");
 const signup = async (req, res) => {
   try {
     //obtener datos del body
-    const { name, email, password, lastName,role } = req.body;
+    const { name, email, password, lastName, role } = req.body;
     //generar hash de la contraseña
     const passwordHash = await bcrypt.hash(password, 10);
 
@@ -21,7 +21,7 @@ const signup = async (req, res) => {
     //guardar el usuario en la base de datos
     const user = await newUser.save();
     //generar token incluyendo id,email,role en el payload
-    const payload = { id: user._id, email: user.email,role:user.role };
+    const payload = { id: user._id, email: user.email, role: user.role };
     const token = generateToken(payload, false);
     //generar token de refresco
     const refreshToken = generateToken(payload, true);
@@ -70,7 +70,7 @@ const login = async (req, res) => {
         error: "Wrong email or password.Please try again.",
       });
     //si la contraseña y email son correctos generar token
-    const payload = { id: user._id, email: user.email};
+    const payload = { id: user._id, email: user.email };
     const token = generateToken(payload, false);
     //generar token de refresco
     const refreshToken = generateToken(payload, true);
@@ -130,5 +130,84 @@ const refreshToken = async (req, res) => {
     });
   }
 };
+const forgetPassword = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await Login.findOne({ email });
 
-module.exports = { signup, login, refreshToken };
+    if (!user) {
+      return res.status(404).json({
+        status: "failed",
+        data: null,
+        error: "This email doesn't exist. Please try again.",
+      });
+    }
+    // Hash de la nueva contraseña
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Actualizar la contraseña del usuario en la base de datos
+    user.password = hashedPassword;
+    await user.save();
+
+    // Si necesitas generar token como en tu ejemplo, aquí lo puedes hacer
+
+    // Envío de respuesta exitosa
+    res.status(200).json({
+      status: "Succeeded",
+      data: null,
+      error: null,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "Failed",
+      data: null,
+      error: error.message,
+    });
+  }
+};
+const deleteUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Verificar si el correo está presente en la solicitud
+    if (!email) {
+      return res.status(400).json({
+        status: "failed",
+        data: null,
+        error: "Correo electrónico no proporcionado en la solicitud.",
+      });
+    }
+
+    // Buscar al usuario por su correo electrónico
+    const user = await Login.findOne({ email });
+
+    // Verificar si el usuario existe
+    if (!user) {
+      return res.status(404).json({
+        status: "failed",
+        data: null,
+        error: "Usuario no encontrado.",
+      });
+    }
+
+    // Eliminar el usuario de la base de datos
+    await user.deleteOne();
+
+    // Respuesta exitosa
+    res.status(200).json({
+      status: "succeeded",
+      data: null,
+      error: null,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "failed",
+      data: null,
+      error: "Error al intentar eliminar el usuario.",
+    });
+  }
+}
+
+module.exports = { signup, login, refreshToken, forgetPassword, deleteUser };
