@@ -1,0 +1,40 @@
+.dates-controller {
+  margin-left: 5%;
+  width: 90%;
+}
+.title-dates {
+  text-transform: uppercase;
+  border-bottom: 1px solid white;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-dates-end {
+  display: inline-flex;
+  justify-content: end;
+  align-items: center;
+}
+#textDate {
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: .5em;
+  font-size: 1.2em;
+}
+.title-dates-end i {
+  text-align: end;
+  font-size: 1.5em;
+  margin-right: 1%;
+  cursor: pointer;
+  width: 5%;
+}
+.all-dates ul li {
+  list-style: none;
+  display: flex;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 1em;
+  border-bottom: 1px solid white;
+}
+.all-dates i {
+  cursor: pointer;
+}

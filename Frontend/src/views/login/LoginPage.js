@@ -51,6 +51,7 @@ function LoginPage({ onLogin }) {
             localStorage.setItem('user', JSON.stringify(data));
           }
           localStorage.setItem('user', JSON.stringify(data));
+          onLogin(data.data.token,data.data.user.role)
           setLoginInfo({
             loggedIn: true,
             email: loginData.email,
@@ -64,7 +65,7 @@ function LoginPage({ onLogin }) {
             setIsLoading(false);
             // Llama a la función onLogin proporcionada desde App.js 
             //para indicar que el inicio de sesión fue exitoso
-            onLogin();
+            onLogin(data.data.token,data.data.user.role);
             if (data.data.user.role === "admin") {
               navigate('/admin')
             } else {

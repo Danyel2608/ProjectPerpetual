@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const dateSchema = new mongoose.Schema({
     fecha: {
-        type: Date,
+        type: String,
         required: true,
         unique: true
     },

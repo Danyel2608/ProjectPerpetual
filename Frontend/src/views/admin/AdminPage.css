@@ -13,6 +13,10 @@
 .header-admin-page a{
     color: white;
 }
+.header-admin-page i.fa-right-from-bracket{
+    text-align: end;
+    font-size: 2em;
+}
 .header-admin-page i{
     font-size: 2em;
     cursor: pointer;

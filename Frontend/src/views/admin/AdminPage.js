@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import './AdminPage.css';
+import { useNavigate } from 'react-router-dom';
+import DatesPage from './components/DatesPage';
 
-function AdminPage() {
+function AdminPage({ onLogout }) {
     const [logins, setLogins] = useState([]);
+    const navigate = useNavigate(); // Hook para navegación
 
     const getLogins = async () => {
         try {
@@ -135,6 +138,12 @@ function AdminPage() {
             console.error("Error al enviar petición de borrar usuario:", error);
         }
     };
+    const handleLogout = () => {
+        // Llama a la función onLogout proporcionada desde App.js para cerrar sesión
+        onLogout();
+        // Redirige al usuario a la página principal (/)
+        navigate('/');
+    };
 
     return (
         <div className='admin-page-content'>
@@ -143,6 +152,7 @@ function AdminPage() {
                     <a href="/home">
                         <i class="fa-solid fa-house"></i>
                     </a>
+                    <i className="fa-solid fa-right-from-bracket" onClick={handleLogout}></i>
                 </div>
                 <h1>Admin Page</h1>
                 <h2>List of Users</h2>
@@ -157,6 +167,7 @@ function AdminPage() {
                     ))}
                 </ul>
             </div>
+            <DatesPage></DatesPage>
         </div>
     );
 }
