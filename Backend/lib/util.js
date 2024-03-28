@@ -26,10 +26,10 @@ const verifyToken = (req, res, next) => {
 const generateToken = (user, isRefreshToken) => {
   if (isRefreshToken) {
     return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: "3m",
+      expiresIn: "15m",
     });
   } else {
-    return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: "1m" });
+    return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: "15m" });
   }
 };
 module.exports = { verifyToken, generateToken };

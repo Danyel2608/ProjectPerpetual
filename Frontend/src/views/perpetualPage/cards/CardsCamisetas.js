@@ -113,7 +113,7 @@ function CardsCamisetas() {
             </div>
             <div className="alert-addItem-add alert-already-invisible" id="alert-addItem">
                 <div className="title-alert">
-                    <i class="fa-regular fa-face-smile-beam"></i>
+                    <i className="fa-regular fa-face-smile-beam"></i>
                     <h1>Add Product</h1>
                 </div>
             </div>

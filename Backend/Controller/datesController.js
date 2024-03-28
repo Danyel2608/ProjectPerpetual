@@ -1,5 +1,4 @@
 const Dates = require("../Model/datesModel");
-
 // Obtener todas las citas reservadas
 const getReservedDates = async (req, res) => {
     try {

@@ -3,7 +3,6 @@ import LoginForm from "./LoginForm";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import Modal from "../Modal/Modal";
-import { LocalStorage } from "../../services/LocalStorage.service";
 import { validatePassword, validateEmail } from "../../utils/validate";
 import { useNavigate } from "react-router-dom";
 import LoadingIndicator from "../UI/Spinners/LoadingIndicator";
@@ -49,12 +48,9 @@ function LoginPage({ onLogin }) {
         if (response.ok) {
           setLoggedIn(true);
           if (loginData.rememberMe) {
-            LocalStorage.setItem("email", loginData.email);
-            LocalStorage.setItem("password", loginData.password);
-            LocalStorage.setItem("rememberMe", true);
+            localStorage.setItem('user', JSON.stringify(data));
           }
-          LocalStorage.setItem("token", data.data.token);
-          LocalStorage.setItem("refreshToken", data.data.refreshToken);
+          localStorage.setItem('user', JSON.stringify(data));
           setLoginInfo({
             loggedIn: true,
             email: loginData.email,
@@ -69,8 +65,12 @@ function LoginPage({ onLogin }) {
             // Llama a la función onLogin proporcionada desde App.js 
             //para indicar que el inicio de sesión fue exitoso
             onLogin();
-            // Redirige al usuario a /home
-            navigate('/home');
+            if (data.data.user.role === "admin") {
+              navigate('/admin')
+            } else {
+              // Redirige al usuario a /home
+              navigate('/home');
+            }
           }, 3000);
         }
       } catch (error) {

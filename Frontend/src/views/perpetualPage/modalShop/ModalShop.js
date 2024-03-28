@@ -45,7 +45,7 @@ function ModalShop(props) {
             <button onClick={OpenAlertPursached}>BUY</button>
           </div>
           <div className="alert-pursached inactive-alert" id="alert-pursached">
-            <i class="fa-regular fa-circle-check">
+            <i className="fa-regular fa-circle-check">
             </i>
             <p>Thank you!! <br />See you soon!!</p>
           </div>

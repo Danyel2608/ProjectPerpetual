@@ -2,6 +2,26 @@ const bcrypt = require("bcrypt");
 const Login = require("../Model/loginModel");
 const { generateToken } = require("../lib/util");
 
+//Get all Logins
+const getAllLogins = async (req, res) => {
+  try {
+    const logins = await Login.find();
+    res.json(logins);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener los logins' });
+  }
+};
+//Get Login by id
+const getLoginId = async (req, res) => {
+  try {
+    const userId = req.body._id;
+    const login = await Login.findOne(userId);
+    res.json(login);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener login by id' });
+  }
+};
+
 //POST /auth/signup
 const signup = async (req, res) => {
   try {
@@ -210,4 +230,4 @@ const deleteUser = async (req, res) => {
   }
 }
 
-module.exports = { signup, login, refreshToken, forgetPassword, deleteUser };
+module.exports = { signup, login, refreshToken, forgetPassword, deleteUser, getAllLogins, getLoginId };

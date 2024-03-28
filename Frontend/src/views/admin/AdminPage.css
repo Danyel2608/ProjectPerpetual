@@ -1,0 +1,45 @@
+.admin-page-content{
+    width: 100vw;
+    height: auto;
+    color: white;
+}
+.header-admin-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+    width: 90%;
+}
+.header-admin-page a{
+    color: white;
+}
+.header-admin-page i{
+    font-size: 2em;
+    cursor: pointer;
+}
+.list-of-users {
+    margin: 5% 0;
+}
+.list-of-users h1{
+    text-align: center;
+    text-transform: uppercase;
+}
+.list-of-users ul,
+.list-of-users h2{
+    margin-left: 5%;
+    width: 90%;
+}
+.list-of-users h2{
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+}
+.list-of-users ul li{
+    margin: 2em 0;
+    font-size: 1.5em;
+    list-style: none;
+    display:inline-flex;
+}
+.list-of-users ul li i{
+    text-align: end;
+    cursor: pointer;
+}

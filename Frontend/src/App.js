@@ -9,6 +9,7 @@ import PerpetualPage from './views/perpetualPage/PerpetualPage';
 import NotFound from './views/OtherRouter/NotFound';
 import Comentarios from './views/comentarios/Comentarios';
 import ForgetPage from "./views/forget/ForgetPage";
+import AdminPage from "./views/admin/AdminPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,11 +38,12 @@ function App() {
           <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
           <Route path='/signup' element={<RegisterPage />} />
           <Route path='/comments' element={<Comentarios />} />
-          <Route path="/forget" element={<ForgetPage/>}></Route>
+          <Route path="/forget" element={<ForgetPage />}></Route>
           {/* Proteccion de la ruta /home para que solo se pueda acceder si está logeado */}
           {isLoggedIn ? (
             <>
               <Route path='/home' element={<PerpetualPage />} />
+              <Route path='/admin' element={<AdminPage />} />
             </>
           ) : (
             <Route path='/login'></Route>
