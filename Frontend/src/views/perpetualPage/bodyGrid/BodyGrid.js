@@ -30,22 +30,24 @@ function BodyGrid() {
             </div>
             {/* Calendarion de citas disponibles,que se obtienen de la base de datos */}
             <div className="calendar" id="citas">
-                <Calendar/>
+                <Calendar />
             </div>
             {/* Camisetas y sus funciones al comprar */}
-            <CardsCamisetas/>
+            <CardsCamisetas />
             {/* Formulario de dudas que se enviará a un correo Gmail */}
             <div className="help" id="help">
                 <h2>DO YOU NEED ADDITIONAL INFORMATION?</h2>
-                <form action="https://formsubmit.co/consultaskoke@gmail.com" method="POST">
+                <form action="https://formsubmit.co/consultaskoke@gmail.com" method="POST" enctype="multipart/form-data">
                     <input type="text" name="userName" placeholder="Name" />
                     <input type="text" name="lastName" placeholder="Last Name" />
                     <input type="email" name="email" id="emailForm" placeholder="Email" />
-                    <input type="text" name="text" placeholder="Writte here..." className="textDescription" />
+                    <input type="text" name="text" placeholder="Write here..." className="textDescription" />
+                    <input type="file" name="fileImgage" id="fileImage" />
                     <div className="buttonForm">
                         <button type="submit">Send</button>
                     </div>
                 </form>
+
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Comentarios.css';
-import perfil from "../../assets/user1.png";
+import perfil from "../../assets/user.jpg";
 
 function Comentarios() {
     const [userName, setUserName] = useState('');

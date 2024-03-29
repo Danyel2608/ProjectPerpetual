@@ -45,10 +45,10 @@ const deleteDate = async (req, res) => {
 }
 const updateDate = async (req, res) => {
     try {
-        const { fecha, fechaI } = req.body;
+        const { fecha, newFecha } = req.body;
 
         // Actualiza la fecha en la base de datos
-        const updatedDate = await Dates.findByIdAndUpdate(fechaId, { fecha }, { new: true });
+        const updatedDate = await Dates.findOneAndUpdate({ fecha: fecha }, { fecha: newFecha }, { new: true });
 
         // Si la fecha se actualiza correctamente, envía una respuesta con la fecha actualizada
         res.status(200).json({ message: 'Fecha actualizada exitosamente', updatedDate });
@@ -58,6 +58,7 @@ const updateDate = async (req, res) => {
         res.status(500).json({ message: 'Hubo un error al actualizar la fecha' });
     }
 };
+
 
 
 

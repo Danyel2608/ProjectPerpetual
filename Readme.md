@@ -33,6 +33,18 @@ On the other hand, I chose NodeJs and MondoDB, even though they are not as used 
         <td><strong>ROLE</strong></td>
     <tr>
     <tr>
+        <td>http://localhost:8001/auth/allLogins</td>
+        <td>GET</td>
+        <td>Get all logins</td>
+        <td>admin</td>
+    <tr>
+    <tr>
+        <td>http://localhost:8001/auth/loginId</td>
+        <td>GET</td>
+        <td>Get login by id</td>
+        <td>admin</td>
+    <tr>
+    <tr>
         <td>http://localhost:8001/auth/login</td>
         <td>POST</td>
         <td>post login</td>
@@ -43,18 +55,6 @@ On the other hand, I chose NodeJs and MondoDB, even though they are not as used 
         <td>POST</td>
         <td>sign up</td>
         <td>user and admin</td>
-    <tr>
-    <tr>
-        <td>http://localhost:8001/dates/availables</td>
-        <td>GET</td>
-        <td>get dates avaibles for calendar</td>
-        <td>admin</td>
-    <tr>
-    <tr>
-        <td>http://localhost:8001/dates/reservation</td>
-        <td>POST</td>
-        <td>post reservation into calendar</td>
-        <td>admin</td>
     <tr>
     <tr>
         <td>http://localhost:8001/auth/forget</td>
@@ -89,13 +89,25 @@ On the other hand, I chose NodeJs and MondoDB, even though they are not as used 
     <tr>
         <td>http://localhost:8001/dates/availables</td>
         <td>GET</td>
-        <td>get all dates reserved for calendar</td>
+        <td>Get all dates reserved for calendar</td>
         <td>admin</td>
     <tr>
     <tr>
         <td>http://localhost:8001/dates/reservation</td>
         <td>POST</td>
         <td>Post dates reserved for calendar</td>
+        <td>admin</td>
+    <tr>
+    <tr>
+        <td>http://localhost:8001/dates/delete</td>
+        <td>DELETE</td>
+        <td>Delete date</td>
+        <td>admin</td>
+    <tr>
+    <tr>
+        <td>http://localhost:8001/dates/update</td>
+        <td>PUT</td>
+        <td>Put date of database</td>
         <td>admin</td>
     <tr>
 </table>
@@ -106,5 +118,3 @@ On the other hand, I chose NodeJs and MondoDB, even though they are not as used 
 
 <h2>License</h2>
 <p>This project belongs to Daniel Salcedo Vivancos</p>
-
-
