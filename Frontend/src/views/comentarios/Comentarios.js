@@ -6,6 +6,15 @@ function Comentarios() {
     const [userName, setUserName] = useState('');
     const [comment, setComment] = useState('');
     const [commentsList, setCommentsList] = useState([]);
+    const [token, setToken] = useState("");
+
+    useEffect(() => {
+        // Verificar si hay un token almacenado en el localStorage al cargar la aplicación
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+        }
+    }, []);
 
     useEffect(() => {
         //Obtener los datos de commentsList en el LocalStorage
@@ -33,6 +42,7 @@ function Comentarios() {
     const addRow = () => {
         if (userName.trim() !== "" && comment.trim() !== "") {
             if (validarNombreUsuario(userName)) {
+                alert("Done Succesfully!");
                 const newComment = {
                     userName: userName,
                     comment: comment
@@ -68,11 +78,12 @@ function Comentarios() {
                     </div>
                     <h1>Comments</h1>
                 </div>
-                <div className="formComment">
+                {token ? (<div className="formComment">
                     <input type="text" value={userName} onChange={e => setUserName(e.target.value)} name="userName" id="userName" placeholder="userName" />
                     <input type="text" value={comment} onChange={e => setComment(e.target.value)} name="comment" id="comment" placeholder="Comment" />
                     <i className="fa-regular fa-paper-plane" onClick={addRow}></i>
-                </div>
+                </div>) : ""}
+
                 <div className="commentsUsers">
                     <ul id="listComments">
                         {commentsList.map((comment, index) => (
@@ -90,5 +101,4 @@ function Comentarios() {
         </div>
     );
 }
-
 export default Comentarios;

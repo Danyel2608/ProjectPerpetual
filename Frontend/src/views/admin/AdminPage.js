@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './AdminPage.css';
 import { useNavigate } from 'react-router-dom';
 import DatesPage from './components/DatesPage';
+import CommentsPage from './components/CommentsPage';
 
 function AdminPage({ onLogout }) {
     const [logins, setLogins] = useState([]);
@@ -131,6 +132,7 @@ function AdminPage({ onLogout }) {
                 console.log("Usuario borrado correctamente");
                 // Después de borrar un usuario, obtén los logins actualizados
                 getLogins();
+                alert("User Delete");
             } else {
                 console.error("Error al borrar usuario:", response.status, response.statusText);
             }
@@ -167,6 +169,7 @@ function AdminPage({ onLogout }) {
                     ))}
                 </ul>
             </div>
+            <CommentsPage></CommentsPage>
             <DatesPage></DatesPage>
         </div>
     );

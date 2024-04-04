@@ -29,6 +29,7 @@ function ForgetPage() {
                 body: JSON.stringify({
                     email: forgetData.email,
                     password: forgetData.password,
+                    answerSecurity:forgetData.answerSecurity
                 }),
             });
 
@@ -43,7 +44,7 @@ function ForgetPage() {
             }else {
                 setIsForget(false);
                 handleVisibilityModalForget();
-                setErrorForget("Wrong email or password validation");
+                setErrorForget("Wrong validation");
             }
         } catch (error) {
            

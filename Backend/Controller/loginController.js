@@ -26,7 +26,7 @@ const getLoginId = async (req, res) => {
 const signup = async (req, res) => {
   try {
     //obtener datos del body
-    const { name, email, password, lastName, role } = req.body;
+    const { name, email, password, lastName, role, answerPrivate } = req.body;
     //generar hash de la contraseña
     const passwordHash = await bcrypt.hash(password, 10);
 
@@ -37,6 +37,7 @@ const signup = async (req, res) => {
       email,
       role,
       password: passwordHash,
+      answerPrivate
     });
     //guardar el usuario en la base de datos
     const user = await newUser.save();
@@ -76,27 +77,32 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Login.findOne({ email });
-    !user &&
-      res.status(404).json({
+
+    // Verificar si se encontró un usuario con el correo electrónico proporcionado
+    if (!user) {
+      return res.status(404).json({
         status: "failed",
         data: null,
-        error: "Wrong email or password.Please try again.",
+        error: "Wrong email or password. Please try again.",
       });
+    }
+
+    // Verificar la contraseña del usuario
     const validPassword = await bcrypt.compare(password, user.password);
-    !validPassword &&
-      res.status(404).json({
+    if (!validPassword) {
+      return res.status(404).json({
         status: "failed",
         data: null,
-        error: "Wrong email or password.Please try again.",
+        error: "Wrong email or password. Please try again.",
       });
-    //si la contraseña y email son correctos generar token
+    }
+
+    // Si la contraseña es válida, generar tokens
     const payload = { id: user._id, email: user.email };
     const token = generateToken(payload, false);
-    //generar token de refresco
     const refreshToken = generateToken(payload, true);
-    await user.save();
 
-    //enviar token
+    // Enviar tokens junto con los datos del usuario
     res.status(201).json({
       status: "Succeeded",
       data: {
@@ -109,12 +115,13 @@ const login = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      status: "Succeeded",
+      status: "failed",
       data: null,
       error: error.message,
     });
   }
 };
+
 
 //GET /auth/refresh-token
 const refreshToken = async (req, res) => {
@@ -152,7 +159,7 @@ const refreshToken = async (req, res) => {
 };
 const forgetPassword = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, answerSecurity } = req.body;
     const user = await Login.findOne({ email });
 
     if (!user) {
@@ -162,21 +169,28 @@ const forgetPassword = async (req, res) => {
         error: "This email doesn't exist. Please try again.",
       });
     }
-    // Hash de la nueva contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const answer = user.answerPrivate;
+    if (answerSecurity === answer) {
+      // Hash de la nueva contraseña
+      const hashedPassword = await bcrypt.hash(password, 10);
+      // Actualizar la contraseña del usuario en la base de datos
+      user.password = hashedPassword;
+      await user.save();
+      // Envío de respuesta exitosa
+      res.status(200).json({
+        status: "Succeeded",
+        data: null,
+        error: null,
+      });
+    } else {
+      console.error(error);
+      res.status(500).json({
+        status: "Failed",
+        data: null,
+        error: error.message,
+      });
+    }
 
-    // Actualizar la contraseña del usuario en la base de datos
-    user.password = hashedPassword;
-    await user.save();
-
-    // Si necesitas generar token como en tu ejemplo, aquí lo puedes hacer
-
-    // Envío de respuesta exitosa
-    res.status(200).json({
-      status: "Succeeded",
-      data: null,
-      error: null,
-    });
   } catch (error) {
     console.error(error);
     res.status(500).json({

@@ -44,7 +44,7 @@ function DatesPage() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
+                alert("Date Delete");
             } else {
                 console.error('Error en la solicitud:', response.status, response.statusText);
             }
@@ -73,6 +73,7 @@ function DatesPage() {
                 });
 
                 if (response.ok) {
+                    alert("Date Create");
                     // Crea un elemento li
                     const listItem = document.createElement("li");
 
@@ -129,7 +130,7 @@ function DatesPage() {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                alert("Succesfuly")
+                alert("Succesfuly save")
             } else {
                 alert("Error to update")
                 console.error('Error en la solicitud:', response.status, response.statusText);

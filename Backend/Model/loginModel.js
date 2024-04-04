@@ -29,6 +29,10 @@ const loginSchema = new Schema({
     type: Boolean,
     required: true,
     default: false,
+  },
+  answerPrivate:{
+    type:String,
+    required:true,
   }
 });
 const login = mongoose.model("Login", loginSchema);

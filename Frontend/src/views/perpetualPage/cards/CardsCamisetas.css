@@ -10,7 +10,6 @@ div.camisetas {
   margin-top: 10%;
   width: 100%;
 }
-
 .camiseta1 img {
   width: 100%;
   padding: 5%;
@@ -30,6 +29,9 @@ div.camisetas {
 }
 .cardBody p {
   font-size: 1em;
+}
+.prices-content{
+  display: flex;
 }
 p.price {
   text-align: end;
@@ -83,7 +85,11 @@ p.price {
   opacity: 1;
   transition: all 1s linear;
 }
-
+#price-x-quantity{
+  font-size: 1.3em;
+  text-align: start;
+  margin-left: 1em;
+}
 @media (min-width: 600px) {
   .card .shop button,
   .cardBody {

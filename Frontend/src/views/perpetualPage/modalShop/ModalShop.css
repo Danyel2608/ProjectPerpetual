@@ -62,12 +62,12 @@
   width: 15%;
   font-size: 1.5em;
   border-radius: 1.5rem;
-  background-color: darkslategrey;
+  background-color: transparent;
   color: white;
   cursor: pointer;
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 15px;
+  right: 15px;
 }
 .buttons-activities {
   display: flex;
@@ -174,5 +174,7 @@
   }
   .modal-close button {
     padding: 1em 0;
+    top: 0px;
+    right: 0px;
   }
 }

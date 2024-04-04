@@ -38,6 +38,8 @@ function App() {
     setToken(null); // Eliminar el token al cerrar sesión
     // Limpiar el token del localStorage al cerrar sesión
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('user');
   }
 
   return (

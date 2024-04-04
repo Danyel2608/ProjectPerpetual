@@ -1,0 +1,20 @@
+.comments-admin{
+    margin: 5%;
+    width: 90%;
+}
+.comments-admin h2{
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+}
+.comment-li{
+    display: flex;
+    padding: 1.5em 0;
+    font-size: 1.5em;
+}
+#comment-content-li{
+    text-align: center;
+}
+.comment-li i{
+    text-align: end;
+    cursor: pointer;
+}

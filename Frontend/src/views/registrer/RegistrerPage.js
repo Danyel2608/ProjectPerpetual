@@ -43,6 +43,7 @@ function RegistrerPage() {
             password: loginData.password,
             name: loginData.name,
             lastName: loginData.lastName,
+            answerPrivate:loginData.answerPrivate,
           }),
         });
         //Si todo a ido bien,redirigir al login,para logearte.

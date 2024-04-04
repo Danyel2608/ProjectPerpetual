@@ -23,7 +23,7 @@ div.form-register {
   align-items: center;
   flex-direction: column;
 }
-.body-form-register input {
+.body-form-register input{
   width: 100%;
   height: auto;
   font-size: 1.5em;
@@ -33,7 +33,18 @@ div.form-register {
   background-color: transparent;
   color: white;
 }
-
+.answer-security input{
+  font-size: 1.5em;
+  border-radius: 0.5rem;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  width: 90%;
+}
+.answer-security h3{
+  text-align: center;
+  text-transform: uppercase;
+}
 .submit-register {
   padding: 1.5em;
 }

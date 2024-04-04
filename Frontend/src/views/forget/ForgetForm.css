@@ -23,6 +23,11 @@ div.form-forget {
 .body-form-forget {
   width: 90%;
 }
+.body-form-forget h3{
+  text-transform: uppercase;
+  text-align: center;
+  margin: .5em;
+}
 .body-form-forget input {
   width: 100%;
   height: auto;

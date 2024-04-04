@@ -38,10 +38,10 @@ function BodyGrid() {
             <div className="help" id="help">
                 <h2>DO YOU NEED ADDITIONAL INFORMATION?</h2>
                 <form action="https://formsubmit.co/consultaskoke@gmail.com" method="POST" enctype="multipart/form-data">
-                    <input type="text" name="userName" placeholder="Name" />
-                    <input type="text" name="lastName" placeholder="Last Name" />
-                    <input type="email" name="email" id="emailForm" placeholder="Email" />
-                    <input type="text" name="text" placeholder="Write here..." className="textDescription" />
+                    <input type="text" name="userName" placeholder="Name" required />
+                    <input type="text" name="lastName" placeholder="Last Name"/>
+                    <input type="email" name="email" id="emailForm" placeholder="Email" required/>
+                    <input type="text" name="text" placeholder="Write here..." className="textDescription" required/>
                     <input type="file" name="fileImgage" id="fileImage" />
                     <div className="buttonForm">
                         <button type="submit">Send</button>

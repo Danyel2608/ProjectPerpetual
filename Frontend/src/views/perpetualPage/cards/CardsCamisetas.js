@@ -14,7 +14,6 @@ function CardsCamisetas() {
             let price = cartPrices[i].textContent;
             let quantity = cartQuantities[i].textContent;
             total = total + price * quantity;
-            console.log(quantity);
         }
         totalCount.innerText = total + "€";
     }
@@ -60,20 +59,20 @@ function CardsCamisetas() {
         }
         let fotoCamiseta = e.target.parentNode.parentNode.firstChild.firstChild.src;
         let description = e.target.parentNode.parentNode.firstChild.nextSibling.lastChild.firstChild.textContent;
-        let price = e.target.parentNode.parentNode.firstChild.nextSibling.lastChild.lastChild.textContent;
+        let price = e.target.parentNode.parentNode.firstChild.nextSibling.lastChild.lastChild.firstChild.textContent;
         let quantity = 1;
         updateTotal();
         let contentItem = `
         <div class="img-item">
-        <img src=${fotoCamiseta} alt=${description} />
+            <img src=${fotoCamiseta} alt=${description} />
         </div>
         <div class="name-item"><h5>${description}</h5></div>
         <div class="price-item"><h5>${price}</h5></div>
-        <div class="buttons-quantity">
-        <div class="plus"><i class="fa-solid fa-plus" id="plus" ></i></div>
-        <div class="rest"><i class="fa-solid fa-minus" id="rest"></i></div>
-        </div>
+        <div id="price-x-quantity">€/und</div>
         <div class="quantity"><p class="quantity-value">${quantity}</p></div>
+        <div class="buttons-quantity">
+            <div class="plus"><i class="fa-solid fa-plus" id="plus" ></i></div>
+            <div class="rest"><i class="fa-solid fa-minus" id="rest"></i></div>
         </div>
         `;
         cartRow.innerHTML = contentItem;
@@ -125,7 +124,10 @@ function CardsCamisetas() {
                     <h3>T-SHIRT BLACK</h3>
                     <div className="cardBody">
                         <p>T-SHIRT BLACK</p>
-                        <p className='price'>20</p>
+                        <div className="prices-content">
+                            <p className='price'>20</p>
+                            <p>€</p>
+                        </div>
                     </div>
                 </div>
                 <div className="shop">
@@ -140,7 +142,10 @@ function CardsCamisetas() {
                     <h3>T-SHIRT WHITE</h3>
                     <div className="cardBody">
                         <p>T-SHIRT WHITE</p>
-                        <p className='price'>20</p>
+                        <div className="prices-content">
+                            <p className='price'>20</p>
+                            <p>€</p>
+                        </div>
                     </div>
                 </div>
                 <div className="shop">
