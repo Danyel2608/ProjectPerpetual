@@ -20,8 +20,6 @@ app.use(cors({
 
 //conectar con la base de datos
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology:true,
 }).then(()=>console.log("Succesfully connected to the database")).catch((err)=>console.log(err))
 //guardar conexion en una constante
 const db = mongoose.connection;

@@ -3,10 +3,19 @@ import './AdminPage.css';
 import { useNavigate } from 'react-router-dom';
 import DatesPage from './components/DatesPage';
 import CommentsPage from './components/CommentsPage';
+import ReactDOM from 'react-dom';
+import ModalAdmin from './components/ModalAdmin';
 
 function AdminPage({ onLogout }) {
     const [logins, setLogins] = useState([]);
     const navigate = useNavigate(); // Hook para navegación
+    const [modalAdmin, setModalAdmin] = useState({
+        title: "",
+        message: "",
+        itsOk: false,
+    });
+    const [visible, setVisible] = useState(false);
+
 
     const getLogins = async () => {
         try {
@@ -129,16 +138,19 @@ function AdminPage({ onLogout }) {
             });
 
             if (response.ok) {
-                console.log("Usuario borrado correctamente");
-                // Después de borrar un usuario, obtén los logins actualizados
+                setVisible(true);
+                setModalAdmin({ title: "Delete user", message: "all is ok", itsOk: true });
                 getLogins();
-                alert("User Delete");
             } else {
-                console.error("Error al borrar usuario:", response.status, response.statusText);
+                setVisible(true);
+                setModalAdmin({ title: "Error Delete user", message: "something has gone wrong", itsOk: false });
             }
         } catch (error) {
-            console.error("Error al enviar petición de borrar usuario:", error);
+            setVisible(true);
+            setModalAdmin({ title: "Error", message: error, itsOk: false });
         }
+    }; const handleCloseModal = () => {
+        setVisible(false);
     };
     const handleLogout = () => {
         // Llama a la función onLogout proporcionada desde App.js para cerrar sesión
@@ -149,6 +161,12 @@ function AdminPage({ onLogout }) {
 
     return (
         <div className='admin-page-content'>
+            {
+                ReactDOM.createPortal(
+                    <ModalAdmin visible={visible} data={modalAdmin} onClose={handleCloseModal} />,
+                    document.querySelector("#modal")
+                )
+            }
             <div className="list-of-users">
                 <div className="header-admin-page">
                     <a href="/home">

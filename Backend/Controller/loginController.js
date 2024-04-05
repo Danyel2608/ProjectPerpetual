@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const Login = require("../Model/loginModel");
 const { generateToken } = require("../lib/util");
+const { enviarMail } = require("./src/mailConfig");
 
 //Get all Logins
 const getAllLogins = async (req, res) => {
@@ -56,7 +57,7 @@ const signup = async (req, res) => {
       },
       error: null,
     });
-
+    enviarMail(user, token);
   } catch (error) {
     if (error.code === 11000) {
       return res.status(409).json({

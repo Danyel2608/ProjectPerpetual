@@ -1,10 +1,22 @@
 import './DatesPage.css';
 import { useEffect, useState } from 'react';
+import ModalAdmin from './ModalAdmin';
+import ReactDOM from "react-dom";
 
 function DatesPage() {
     const [dates, setDates] = useState([]);
     const [textDate, setTextDate] = useState("");
     const [editable, setEditable] = useState("");
+    const [modalAdmin, setModalAdmin] = useState({
+        title: "",
+        message: "",
+        itsOk: false,
+    });
+    const [visible, setVisible] = useState(false);
+
+    const handleCloseModal = () => {
+        setVisible(false);
+    };
 
     const getDates = async () => {
         try {
@@ -27,6 +39,11 @@ function DatesPage() {
     useEffect(() => {
         getDates();
     })
+    const isValidDateFormat = (textDate) => {
+        // Expresión regular para verificar el formato YYYY-MM-DD
+        const regex = /^\d{4}-\d{2}-\d{2}$/;
+        return regex.test(textDate);
+    };
 
     const deleteDate = async (e) => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -43,14 +60,17 @@ function DatesPage() {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                alert("Date Delete");
+                setVisible(true);
+                setModalAdmin({ title: "Date Delete", message: "Everything has gone well", itsOk: true });
             } else {
-                console.error('Error en la solicitud:', response.status, response.statusText);
+                setModalAdmin({ title: "Error", message: "Something has gone wrong", itsOk: false })
             }
         } catch (error) {
             console.error('Error en la solicitud:', error);
+            setModalAdmin({ title: "Error", message: "Something has gone wrong", itsOk: false })
+            setVisible(true);
         }
+        setVisible(!visible)
     };
     const saveTextDates = (e) => {
         let textDateContent = e.target.value;
@@ -61,7 +81,7 @@ function DatesPage() {
         const user = JSON.parse(localStorage.getItem('user'));
         const authToken = user.data.token;
 
-        if (textDate.trim() !== "") {
+        if (textDate.trim() !== "" && isValidDateFormat(textDate)) {
             try {
                 const response = await fetch("http://localhost:8001/dates/reservation", {
                     method: "POST",
@@ -73,7 +93,9 @@ function DatesPage() {
                 });
 
                 if (response.ok) {
-                    alert("Date Create");
+                    setVisible(true);
+                    setModalAdmin({ title: "Modified Date", message: "All is ok", itsOk: true });
+
                     // Crea un elemento li
                     const listItem = document.createElement("li");
 
@@ -99,11 +121,16 @@ function DatesPage() {
                     listDates.appendChild(listItem);
                 }
                 else {
-                    console.error('Error en la solicitud:', response.status, response.statusText);
+                    setVisible(true);
+                    setModalAdmin({ title: "Error Add Date", message: "Something has gone wrong", itsOk: false });
                 }
             } catch (error) {
-                console.error('Error en la solicitud:', error);
+                setVisible(true);
+                setModalAdmin({ title: "Request error", message: "Something has gone wrong", itsOk: false });
             }
+        } else {
+            setVisible(true);
+            setModalAdmin({ title: "Invalid date", message: "Something has gone wrong", itsOk: false });
         }
     };
     const focusOnEditable = (e) => {
@@ -128,25 +155,31 @@ function DatesPage() {
                 body: JSON.stringify({ fecha: editable, newFecha: fechaUpdate })
             });
             if (response.ok) {
-                const data = await response.json();
-                console.log(data);
-                alert("Succesfuly save")
+                setVisible(true);
+                setModalAdmin({title:"Update Date",message:"All is ok",itsOk:true});
             } else {
-                alert("Error to update")
-                console.error('Error en la solicitud:', response.status, response.statusText);
+                setVisible(true);
+                setModalAdmin({title:"Error Update Date",message:"Something has gone wrong",itsOk:false});
             }
         } catch (error) {
-            console.error('Error en la solicitud:', error);
-        }
+            setVisible(true);
+            setModalAdmin({title:"Request Error",message:"Something has gone wrong",itsOk:false});
+    }
     }
 
 
     return (
         <div className="dates-controller">
+            {
+                ReactDOM.createPortal(
+                    <ModalAdmin visible={visible} data={modalAdmin} onClose={handleCloseModal} />,
+                    document.querySelector("#modal")
+                )
+            }
             <div className="title-dates">
                 <h2>Dates</h2>
                 <div className="title-dates-end">
-                    <input type="text" name="textDate" id="textDate" placeholder='YYYY/MM/DD' onBlur={saveTextDates} />
+                    <input type="text" name="textDate" id="textDate" placeholder='YYYY-MM-DD' onBlur={saveTextDates} />
                     <i class="fa-solid fa-plus" onClick={addDates}></i>
                 </div>
             </div>

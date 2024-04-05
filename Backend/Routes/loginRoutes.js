@@ -1,5 +1,6 @@
 //importar loginController y generar las rutas para el registro y el login
 const loginController = require("../Controller/loginController");
+const { confirmarEmail } = require("../Controller/mailcontroller");
 const verifyToken = require("../middlewares/auth");
 const router = require("express").Router();
 
@@ -15,5 +16,7 @@ router.get("/refresh", verifyToken, loginController.refreshToken);
 router.put("/forget", loginController.forgetPassword)
 //Endpoint para eliminar un usuario
 router.delete("/deleteUser", verifyToken, loginController.deleteUser);
+//Confirmar email
+router.get("/confirmar/:token", confirmarEmail);
 
 module.exports = router;
